@@ -1,0 +1,21 @@
+php bin/magento setup:install --base-url="http://localhost/magento24" --db-host="localhost" --db-name="magento24" --db-user="root" --db-password="" --admin-firstname="Huy" --admin-lastname="Tran" --admin-email="trankhachuy94@gmail.com" --admin-user="admin" --admin-password="admin123" --backend-frontname="admin" --elasticsearch-host=localhost:9200
+
+php bin/magento setup:install --base-url="http://localhost/magento23" --db-host="localhost:3307" --db-name="magento23" --db-user="root" --db-password="" --admin-firstname="Huy" --admin-lastname="Tran" --admin-email="trankhachuy94@gmail.com" --admin-user="admin" --admin-password="admin123" --backend-frontname="admin"
+
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento cache:disable
+php bin/magento deploy:mode:set developer
+php bin/magento setup:static-content:deploy -f
+php bin/magento module:disable Magento_TwoFactorAuth
+php bin/magento dev:query-log:enable
+
+php bin/magento indexer:info
+php bin/magento indexer:reindex
+php bin/magento indexer:reset
+php bin/magento indexer:set-mode
+php bin/magento indexer:show-mode
+php bin/magento indexer:status
+
+AFF.*(\n.+)*
+
